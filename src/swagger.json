@@ -1,0 +1,424 @@
+{
+    "openapi":"3.0.0",
+    "info": {
+        "title":"API do Challenger tindin",
+        "description":"",
+        "termsOfService": "",
+        "contact":{
+            "email":"lucasamorimlima17@gmail.com"
+        },
+        "version":"1.0.0"
+    },
+    "servers": [
+        {
+            "url":"http://localhost:3333/",
+            "description":"API de test"
+        }
+    ],
+
+    "paths": {
+        "/users":{
+            "post":{
+               "summary": "Autenticação do usuário",
+               "description": "Rota responsável pela autenticação do usuário ultizando JWT",
+               "tags": ["Users"],
+               "requestBody":{
+                   "content":{
+                       "aplication/json":{
+                           "schema":{
+                            "$ref": "#/components/schemas/Users"
+                           },
+                           "examples": {
+                                "Users": {
+                                    "value":{
+                                        "name": "Lucas Amorim Lima",
+                                        "email": "lucasamorimolima17@gmail.com",
+                                        "password": "1d547Erc"
+                                    }
+                                }
+                            }
+                        }
+                    }
+               
+                },
+                "responses":{
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "aplication/json":{
+                                "schema":{
+                                    "type": "object",                
+                                        "$ref":"#/components/schemas/Users"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/classes":{
+            "post":{
+               "summary": "Dados das Classes",
+               "description": "Rota responsável por exibir os dados da classe",
+               "tags": ["Classes"],
+               "security" : [{"bearerAuth":{}}],
+               "requestBody":{
+                   "content":{
+                       "aplication/json":{
+                           "schema":{
+                            "$ref": "#/components/schemas/Classes"
+                           },
+                           "examples": {
+                                "Classes": {
+                                    "value":{
+                                        "name": "História",
+                                        "description": "Classe da aula de história",
+                                        "data_init": "2000-01-01T02:00:00.000Z",
+                                        "data_end": "2000-01-01T02:00:00.000Z",
+                                        "total_comments": "0"
+                                    }
+                                }
+                            }
+                        }
+                    }
+               
+                },
+                
+                "responses":{
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "aplication/json":{
+                                "schema":{
+                                    "type": "object",                
+                                        "$ref":"#/components/schemas/Classes"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+
+            "get":{
+                "summary": "Dados das Classes",
+                "description": "Rota responsável por exibir os dados da classe",
+                "tags": ["Classes"],
+                "security" : [{"bearerAuth":{}}],
+                "parameters":[
+                {
+                     "name": "name",
+                     "in": "query",
+                     "description":"Nome da classe para busca",
+                     "required": false
+                
+                 }
+                 ],
+                 "responses":{
+                     "401": {
+                         "description": "Unauthorized"
+                     },
+                     "200": {
+                         "description": "OK",
+                         "content": {
+                             "aplication/json":{
+                                 "schema":{
+                                    "type": "array",                
+                                    "itens": {
+                                        "$ref":"#/components/schemas/Classes"
+                                    }
+                                         
+                                 }
+                             }
+                         }
+                     }
+                 }
+            },
+
+            "put":{
+                "summary": "Alterar a Classe pelo id",
+                "description": "Alterar a Classe pelo id",
+                "tags": ["Classes"],
+                "security" : [{"bearerAuth":{}}],
+                "parameters":[
+                {
+                     "name": "id",
+                     "in": "query",
+                     "description":"Nome da classe para busca",
+                     "required": false
+                
+                 }
+                 ],
+                "requestBody":{
+                    "content":{
+                        "aplication/json":{
+                            "schema":{
+                             "$ref": "#/components/schemas/Classes"
+                            },
+                            "examples": {
+                                "Classes": {
+                                    "value":{
+                                         "name": "História",
+                                         "description": "Classe da aula de história",
+                                         "data_init": "2000-01-01T02:00:00.000Z",
+                                         "data_end": "2000-01-01T02:00:00.000Z",
+                                         "total_comments": "0"
+                                    }
+                                 
+                                }
+                            }
+                        }  
+                    }
+                
+                }
+            }
+        },
+        "/classes/{id}":{
+            "get":{
+               "summary": "Busca dados das Classes pelo id",
+               "description": "Rota responsável por exibir os dados da classe pelo id",
+               "tags": ["Classes"],
+               "security" : [{"bearerAuth":{}}],
+               "parameters":[
+               {
+                    "name": "id",
+                    "in": "path",
+                    "description":"Nome da classe pelo id",
+                    "required": false
+               
+                }
+                ],
+                "responses":{
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "aplication/json":{
+                                "schema":{
+                                    "type": "object",                
+                                        "$ref":"#/components/schemas/Classes"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+
+            "delete": {
+                "tags": ["Classes"],
+                "summary": "Apagando uma classe",
+                "description": "",
+                "security" : [{"bearerAuth":{}}],
+
+                "parameters": [
+                  {
+                    "name": "id",
+                    "in": "path",
+                    "description": "Classe id para apagar",
+                    "required": true,
+                    "type": "string"
+                  }
+                ],
+                "responses": {
+                  "400": {
+                    "description": "Invalid ID supplied"
+                  },
+                  "404": {
+                    "description": "Class not found"
+                  },
+                  "200": {
+                    "description": "OK",
+                    "content": {
+                        "aplication/json":{
+                            "schema":{
+                                "type": "object",                
+                                    "$ref":"#/components/schemas/Classes"
+                            }
+                        }
+                    }
+                }
+                }
+
+              }
+        },
+
+        "/comments":{
+            "post":{
+               "summary": "Dados dos Comments",
+               "description": "Rota responsável por exibir os dados do Comments",
+               "tags": ["Comments"],
+               "security" : [{"bearerAuth":{}}],
+               "requestBody":{
+                   "content":{
+                       "aplication/json":{
+                           "schema":{
+                            "$ref": "#/components/schemas/Classes"
+                           },
+                           "examples": {
+                                "Comments": {
+                                    "value":{
+                                        "id_class": "61e726391f34139b556ad6cf",
+                                        "comment": "Isto aqui é um comentário"
+                                        
+                                    }
+                                }
+                            }
+                        }
+                    }
+               
+                },
+                
+                "responses":{
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "aplication/json":{
+                                "schema":{
+                                    "type": "object",                
+                                        "$ref":"#/components/schemas/Comments"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+
+            "get":{
+                "summary": "Dados dos Comments",
+                "description": "Rota responsável por exibir os dados do Comment",
+                "tags": ["Comments"],
+                "security" : [{"bearerAuth":{}}],
+                "parameters":[
+                {
+                     "name": "name",
+                     "in": "query",
+                     "description":"Nome da classe para busca",
+                     "required": false
+                
+                 }
+                 ],
+                 "responses":{
+                     "401": {
+                         "description": "Unauthorized"
+                     },
+                     "200": {
+                         "description": "OK",
+                         "content": {
+                             "aplication/json":{
+                                 "schema":{
+                                    "type": "array",                
+                                    "itens": {
+                                        "$ref":"#/components/schemas/Comments"
+                                    }
+                                         
+                                 }
+                             }
+                         }
+                     }
+                 }
+            }
+        },
+
+        "/comments/{id}":{
+            
+            "delete": {
+                "tags": ["Comments"],
+                "summary": "Apagando um Comment",
+                "description": "",
+                "security" : [{"bearerAuth":{}}],
+
+                "parameters": [
+                  {
+                    "name": "id",
+                    "in": "path",
+                    "description": "Comment id para apagar",
+                    "required": true,
+                    "type": "string"
+                  }
+                ],
+                "responses": {
+                  "400": {
+                    "description": "Invalid ID supplied"
+                  },
+                  "404": {
+                    "description": "Comment not found"
+                  },
+                  "200": {
+                    "description": "OK",
+                    "content": {
+                        "aplication/json":{
+                            "schema":{
+                                "type": "object",                
+                                    "$ref":"#/components/schemas/Comments"
+                            }
+                        }
+                    }
+                }
+                }
+
+              }
+        }
+
+    },"components":{
+        "schemas":{
+            "Users":{
+                "type": "object",
+                "properties": {
+                 "name":{
+                     "type": "string" 
+                 },
+                 "email":{
+                     "type": "string" 
+                 },
+                 "password":{
+                     "type": "string" 
+                 }
+                }
+            },
+            "Classes":{
+                "type": "object",
+                "properties": {
+                    "name":{
+                        "type": "string" 
+                    },
+                    "description":{
+                        "type": "string" 
+                    },
+                    "data_init":{
+                        "type": "Date" 
+                    },"data_end":{
+                        "type": "Date" 
+                    },"total_comments":{
+                        "type": "number" 
+                    }
+                }
+            },
+            "Comments":{
+                "type": "object",
+                "properties": {
+                    "id_class":{
+                        "type": "string" 
+                    },
+                    "comment":{
+                        "type": "string" 
+                    }
+                }
+            }
+        },
+        "securitySchemes":{
+            "bearerAuth":{
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat" : "JWT"
+            }
+        }
+    }
+}
+
