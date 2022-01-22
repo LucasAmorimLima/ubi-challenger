@@ -1,7 +1,7 @@
 import {Request,Response} from 'express'
 import User from "../schemas/User";
-import { jwtConstants } from '../services/constants';
-import { encodeSession } from '../services/generateJWT';
+import { jwtConstants } from '../services/jwt/constants';
+import { encodeSession } from '../services/jwt/generateJWT';
 class UserController {
 
     public async login(req: Request,res: Response): Promise<Response> {
@@ -20,10 +20,10 @@ class UserController {
             {
                 authenticate: authenticate,
                 session: session
-
             }
         )
     }
+
 }
 
 export default new UserController()

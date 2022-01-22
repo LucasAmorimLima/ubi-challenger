@@ -1,9 +1,9 @@
 import { Request, Response, NextFunction } from "express";
-import {DecodeResult,ExpirationStatus,Session} from '../api/services/interfaces'
-import {decodeSession} from '../api/services/decodeJWT'
-import {encodeSession} from '../api/services/generateJWT'
-import {checkExpirationStatus} from '../api/services/sessionExpired'
-import { jwtConstants } from "../api/services/constants";
+import {DecodeResult,ExpirationStatus,Session} from '../api/services/jwt/interfaces'
+import {decodeSession} from '../api/services/jwt/decodeJWT'
+import {encodeSession} from '../api/services/jwt/generateJWT'
+import {checkExpirationStatus} from '../api/services/jwt/sessionExpired'
+import { jwtConstants } from "../api/services/jwt/constants";
 
 
 export function authMiddleware(req: Request, res: Response, next: NextFunction) {
@@ -18,14 +18,24 @@ export function authMiddleware(req: Request, res: Response, next: NextFunction) 
 
     const responseHeader = "X-Renewed-Token";
     const header = req.header(requestHeader);
+    const splitHeader: Array<string[]> = []
     console.log(header)
 
     if (!header) {
         unauthorized(`Required ${requestHeader} header not found.`);
         return;
     }
-
-    const decodedSession: DecodeResult = decodeSession(jwtConstants.secret, header);
+    else {
+        const split: string[] = header.split(" ")
+        splitHeader.push(split)
+    }
+    console.log(splitHeader[0][0]);
+    console.log(splitHeader[0][2]);
+    if (splitHeader[0][0] !== "Bearer") {
+        unauthorized(`Failed to decode or validate authorization token. Reason: invalid-token.`);
+        return;
+    }
+    const decodedSession: DecodeResult = decodeSession(jwtConstants.secret, splitHeader[0][2] || splitHeader[0][1] );
     
     if (decodedSession.type === "integrity-error" || decodedSession.type === "invalid-token") {
         unauthorized(`Failed to decode or validate authorization token. Reason: ${decodedSession.type}.`);

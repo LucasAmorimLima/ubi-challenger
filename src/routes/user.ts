@@ -6,4 +6,5 @@ const routes = Router()
 
 routes.post('/users',joiMiddleware, UserController.login)
 
+
 export default routes

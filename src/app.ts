@@ -2,8 +2,7 @@ import express from 'express'
 import cors from "cors";
 import mongoose from 'mongoose'
 import user from './routes/user'
-import classe from './routes/classes'
-import comment from './routes/comments'
+import places from './routes/places'
 import swaggerUi from 'swagger-ui-express'
 import swaggerDocs from './swagger.json'
 class App {
@@ -24,11 +23,10 @@ class App {
 
     private routes() {
         this.express.use(user)
-        this.express.use(classe)
-        this.express.use(comment)
+        this.express.use(places)
     }
     private database() {
-        mongoose.connect('mongodb+srv://adm:1d494E7E@cluster0.i0zjh.mongodb.net/chalengerdb?retryWrites=true&w=majority')
+        mongoose.connect('mongodb+srv://adm:1d494E7E@cluster0.i0zjh.mongodb.net/tindindb?retryWrites=true&w=majority')
     }
 }
 

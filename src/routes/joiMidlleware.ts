@@ -1,11 +1,11 @@
 import { Request, Response, NextFunction } from 'express'
 import _ from 'lodash';
-import {usersSchema,classesSchema,commentsSchema} from '../api/services/Schemas'
+import {usersSchema,placesSchema} from '../api/services/joi/Schemas'
 import {Schema} from 'joi'
 const Schemas = {
-    '/comments' : commentsSchema,
-    '/classes' : classesSchema,
+    '/places' : placesSchema,
     '/users' : usersSchema,
+    '/users/insert' : usersSchema,
 }
 
     
