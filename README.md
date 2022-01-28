@@ -68,6 +68,8 @@ Um rápido overview da estrutura do projeto
     ├── configs
     ├── routes
 ```
+## Diagrama de Classes
+<img src="https://github.com/LucasAmorimLima/LucasAmorimLima/blob/main/Ubi-Challenger.drawio.png" alt="Diagrama de Classes">
 
 ## Bibliotecas e Frameworks ultilizados
 
