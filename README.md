@@ -63,6 +63,7 @@ o parâmetro role define se é um usuário com permições normais ou um adminis
 ## :open_file_folder: O que têm dentro?
 
 Um rápido overview da estrutura do projeto
+```
     .
     ├── api
     │   ├───controller
@@ -71,6 +72,7 @@ Um rápido overview da estrutura do projeto
     ├── configs
     ├── routes
     |── tests
+```
 
 ## Bibliotecas e Frameworks ultilizados
 
