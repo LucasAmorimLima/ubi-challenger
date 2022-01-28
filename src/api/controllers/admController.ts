@@ -18,7 +18,7 @@ class AdmController {
             take : (perPage as number),
 
         }).then(async(user)=>{
-            if (search==='term') {
+            if (search==='1') {
                 return res.status(200).json(await findFormated(user,true))
             }          
             return res.status(200).json(await findFormated(user,false))

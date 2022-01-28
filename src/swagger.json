@@ -70,8 +70,7 @@
                                 "User": {
                                     "value":{
                                         "email":"lucas@gmail.com",
-                                        "password":"lucas",
-                                        "role":"adm"
+                                        "password":"lucas"
                                     }
                                 }
                             }
@@ -270,7 +269,7 @@
                 
                  },
                  {
-                    "name": "search",
+                    "name": "finish",
                     "in": "query",
                     "description":"filtro para busca busca",
                     "required": false
@@ -292,6 +291,30 @@
                          }
                      }
                  }
+            }
+        },
+        "/adm/add":{
+            "post":{
+               "summary": "Cadastra um administrador",
+               "description": "Rota responsável por inserir um administrador",
+               "tags": ["Administrator"],
+                
+                "responses":{
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",                
+                                        "$ref":"#/components/schemas/Administrator"
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
         
@@ -316,10 +339,21 @@
                  },
                  "password":{
                      "type": "string" 
-                 },
-                 "role":{
-                    "type": "string" 
+                 }
                 }
+            },
+            "Administrator":{
+                "type": "object",
+                "properties": {               
+                 "email":{
+                     "type": "string" 
+                 },
+                 "password":{
+                     "type": "string" 
+                 },
+                 "hole":{
+                     "type":"string"
+                 }
                 }
             },
             "Task":{

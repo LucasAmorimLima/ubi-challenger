@@ -44,7 +44,7 @@ export const loginSchema = Joi.object({
 
 export const findAllSchema = Joi.object({
     query: Joi.object({
-        search: Joi.string().valid('term').insensitive(),
+        search: Joi.string().valid('1','0').insensitive(),
         page: Joi.number(),
         perPage: Joi.number()
     })

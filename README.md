@@ -47,18 +47,14 @@ Antes de começar deve-se alterar as configurações do banco de dados para a su
    "database": "ubi_challenger",
 ```
 
-Acesse https://localhost:3333/users/add
-para adicionar um novo usuário
+Acesse https://localhost:3333/adm/add
 
-Exemplp em json:
-```
-{
-    email:"ubistart@gmail.com"
-    password:"password"
-    role: "users" ou "adm"
-}
-```
-o parâmetro role define se é um usuário com permições normais ou um administrador
+para adicionar um administrador, e ele irá gerar um perfil adm, o ideal seria criar uma seed para fazer isso automaticamente, porém ocorreram alguns contratempos e não consegui implementar, mas tentei contornar a situação criando um endpoint para essa função
+
+usuários padrôes podem ser criados como foi solicitado acessando o endpoint
+
+https://localhost:3333/users/add
+
 
 ## :open_file_folder: O que têm dentro?
 
