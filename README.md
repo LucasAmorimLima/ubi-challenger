@@ -71,7 +71,6 @@ Um rápido overview da estrutura do projeto
     │   └───services
     ├── configs
     ├── routes
-    |── tests
 ```
 
 ## Bibliotecas e Frameworks ultilizados
