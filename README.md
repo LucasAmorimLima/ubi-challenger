@@ -1,7 +1,7 @@
 <p align="center">
     <h2 align="center">Lucas Amorim Lima</h2>
 </p> 
-<p align="center">Personal Expense Management</p>
+
 
 ## :rocket: Quick start
 
@@ -59,6 +59,7 @@ https://localhost:3333/users/add
 ## :open_file_folder: O que têm dentro?
 
 Um rápido overview da estrutura do projeto
+```
     .
     ├── api
     │   ├───controller
@@ -66,7 +67,7 @@ Um rápido overview da estrutura do projeto
     │   └───services
     ├── configs
     ├── routes
-    |── tests
+```
 
 ## Bibliotecas e Frameworks ultilizados
 
@@ -121,7 +122,7 @@ Um rápido overview da estrutura do projeto
 
 Depois que a aplicação é iniciada, voçê pode ver a documentação do projeto acessando :
 ```
-localhost/3333/api-docs
+http://localhost:3333/api-docs
 ```
 ## Insomnia 
 
