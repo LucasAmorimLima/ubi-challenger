@@ -8,9 +8,9 @@ class TaskController {
     static create = async (req: Request,res: Response): Promise<void> =>{
         const  taskRepository = getManager().getRepository(Task);
         const  userRepository = getManager().getRepository(User);
-        const {userId} = req.body
+        const {id} = req.body
         
-        await userRepository.findOneOrFail(userId).then(async(user)=>{
+        await userRepository.findOneOrFail(id).then(async(user)=>{
             const data = {
                 "createAt": new Date()
             }
@@ -31,8 +31,7 @@ class TaskController {
     static finalized = async (req: Request,res: Response): Promise<void> =>{
 
         const  taskRepository = getManager().getRepository(Task);
-        const {id} = req.params
-        const {dateFinalized} = req.body
+        const {id} = req.body
 
         await taskRepository.findOneOrFail(id).then(async(task)=>{
             if (task.finalized) {
@@ -40,7 +39,7 @@ class TaskController {
             }
             const taskUpdate = await taskRepository.update(
                 {id:id},{
-                   dateFinalized:dateFinalized,
+                   dateFinalized:new Date,
                    finalized: true
                 });
     
@@ -53,7 +52,7 @@ class TaskController {
     static update = async (req: Request,res: Response): Promise<void> =>{
 
         const  taskRepository = getManager().getRepository(Task);
-        const {id} = req.params
+        const {id} = req.body
         const {description,term} = req.body
 
         await taskRepository.findOneOrFail(id).then(async(task)=>{
@@ -79,8 +78,8 @@ class TaskController {
     static findAll = async (req: Request,res: Response): Promise<void> =>{
         const  taskRepository = getManager().getRepository(Task);
         const  userRepository = getManager().getRepository(User);
-        
-        const {id} = req.params
+        console.log(req.body);
+        const {id} = req.body
         
         await userRepository.findOneOrFail({id:id}).then(async(user)=>{
             const task = await taskRepository.find(

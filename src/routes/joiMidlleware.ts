@@ -2,22 +2,18 @@ import { Request, Response, NextFunction } from 'express'
 import _ from 'lodash';
 import {
   findAllSchema,
-  findAllTaskSchema,
   loginSchema,
   taskAddSchema,
   usersAddSchema,
-  taskFinalizedSchema,
   taskUpdateSchema} 
 from '../configs/joi/Schemas'
 import {Schema} from 'joi'
 
 const Schemas = {
     '/users/task/add' : taskAddSchema,
-    '/users/task/finalized/:id' : taskFinalizedSchema,
-    '/users/task/update/:id' : taskUpdateSchema,
+    '/users/task/update' : taskUpdateSchema,
     '/users/login' :loginSchema,
     '/users/add' :usersAddSchema,
-    '/users/task/find/:id' : findAllTaskSchema,
     '/adm/find': findAllSchema
 }
 

@@ -1,4 +1,4 @@
-import {Entity, PrimaryGeneratedColumn, Column, OneToMany} from "typeorm";
+import {Entity, PrimaryGeneratedColumn, Column, OneToMany, } from "typeorm";
 import { Task } from "./Task";
 
 @Entity()
@@ -14,12 +14,13 @@ export class User {
     password: string;
 
     @Column()
-    role: "users" | "adm";
+    role: "users" | "adm" ;
     
     @OneToMany(() => Task, (task) => task.user,{
         cascade: true
     })
     task: Task[]
 
+    
 }
 

@@ -6,7 +6,7 @@ class UserController {
 
     static create = async (req: Request,res: Response): Promise<Response> =>{
         const  userRepository = getManager().getRepository(User);
- 
+        const {email, password, role="users"} = req.body
         const findEmail = await userRepository.findOne({email:req.body.email});
 
         if (findEmail) {
@@ -15,7 +15,11 @@ class UserController {
             })
         }
      
-        const user = await userRepository.save(req.body);
+        const user = await userRepository.save({
+            email: email,
+            password: password,
+            role: role
+        });
 
         return res.json(user)
     }

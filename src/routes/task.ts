@@ -7,8 +7,8 @@ import { authMiddleware } from './jwtMidlleware'
 const routes = Router()
 
 routes.post('/users/task/add',authMiddleware, joiMiddleware,TaskController.create )
-routes.put('/users/task/finalized/:id',authMiddleware, joiMiddleware,TaskController.finalized)
-routes.put('/users/task/update/:id',authMiddleware, joiMiddleware,TaskController.update)
-routes.get('/users/task/find/:id',authMiddleware,joiMiddleware,TaskController.findAll)
+routes.put('/users/task/finalized/',authMiddleware,TaskController.finalized)
+routes.put('/users/task/update/',authMiddleware, joiMiddleware,TaskController.update)
+routes.get('/users/task/find/',authMiddleware,TaskController.findAll)
 
 export default routes

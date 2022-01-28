@@ -67,7 +67,10 @@ export function authMiddleware(req: Request, res: Response, next: NextFunction) 
     } else {
         session = decodedSession.session;
     }
-
+    req.body = {
+        ...req.body,
+        id: decodedSession.session.id
+    }
     // Set the session on response.locals object for routes to access
     res.locals = {
         ...res.locals,
