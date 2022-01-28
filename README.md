@@ -10,7 +10,7 @@
 Fork o repositório. em seguida, clone-o localmente fazendo:
 
 ```bash
-https://github.com/LucasAmorimLima/Tindin-Challenger-Fase2
+https://github.com/LucasAmorimLima/ubi-challenger
 ```
 
 ### Step 2: Instalando as dependências 
