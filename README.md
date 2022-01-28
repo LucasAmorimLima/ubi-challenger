@@ -75,15 +75,13 @@ Um rápido overview da estrutura do projeto
 ## Bibliotecas e Frameworks ultilizados
 
 1. Express
-2. Mysql
-3. JWT
-4. Lodash
-5. Swagger
-6. Jest
-7. typescript
-8. Joi
-9. Axios
-10. TypeORM
+2. JWT
+3. Lodash
+4. Swagger
+5. typescript
+6. Joi
+7. Moment
+8. TypeORM
 
 
 
