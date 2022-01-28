@@ -6,9 +6,9 @@ export interface User {
 }
 
 export interface Session {
-    id: number;
-    dateCreated: Date;
-    username: string;
+    id: string;
+
+    role : string
     /**
      * Timestamp indicating when the session was created, in Unix milliseconds.
      */

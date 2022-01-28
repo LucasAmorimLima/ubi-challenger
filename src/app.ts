@@ -1,33 +1,30 @@
 import express from 'express'
-import cors from "cors";
-import mongoose from 'mongoose'
 import user from './routes/user'
-import places from './routes/places'
+import login from './routes/login'
+import task from './routes/task'
+import adm from './routes/adm'
 import swaggerUi from 'swagger-ui-express'
 import swaggerDocs from './swagger.json'
-class App {
-    public express: express.Application
+import { createConnection } from 'typeorm';
+import "reflect-metadata";
 
-    public constructor() {
-        this.express = express()
-        this.middlewares()
-        this.routes()
-        this.database()
-    }
+createConnection().then(() => {
 
-    private middlewares() {
-        this.express.use(express.json())
-        this.express.use(cors())
-        this.express.use("/api-docs",swaggerUi.serve,swaggerUi.setup(swaggerDocs))
-    }
+    // create express app
+    const app = express();
+        
+    app.use(express.json())
+    app.use("/api-docs",swaggerUi.serve,swaggerUi.setup(swaggerDocs))
 
-    private routes() {
-        this.express.use(user)
-        this.express.use(places)
-    }
-    private database() {
-        mongoose.connect('mongodb+srv://adm:1d494E7E@cluster0.i0zjh.mongodb.net/tindindb?retryWrites=true&w=majority')
-    }
-}
+    app.use(user)
+    app.use(login)
+    app.use(task)
+    app.use(adm)
+    
+    
 
-export default new App().express
+    app.listen(process.env.port || 3333,()=>{
+        console.log("listering on port 3333")
+    })
+
+})
