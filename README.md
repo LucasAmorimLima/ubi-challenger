@@ -1,7 +1,7 @@
 <p align="center">
     <h2 align="center">Lucas Amorim Lima</h2>
 </p> 
-<p align="center">Personal Expense Management</p>
+
 
 ## :rocket: Quick start
 
