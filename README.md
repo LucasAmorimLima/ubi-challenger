@@ -127,7 +127,7 @@ Um rápido overview da estrutura do projeto
 
 Depois que a aplicação é iniciada, voçê pode ver a documentação do projeto acessando :
 ```
-localhost/3333/api-docs
+http://localhost:3333/api-docs
 ```
 ## Insomnia 
 
